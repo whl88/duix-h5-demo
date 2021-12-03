@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <button @click="say()">文字驱动数字人</button>
+    <button @click="unmute()">取消静音</button>
     <div class="dt"></div>
   </div>
 </template>
@@ -16,6 +17,9 @@ export default {
     say(){
       this.duix.speak('你好，欢迎使用硅基智能的数字人对话产品。') 
     },
+    unmute(){
+      this.duix.setVideoMuted(false)
+    }
   },
   mounted(){
     this.duix = new DUIX(
