@@ -8,6 +8,7 @@
 
 <script>
 import DUIX from 'duix-guiji'
+import VConsole from 'vconsole'
 
 export default {
   name: 'Home',
@@ -22,6 +23,7 @@ export default {
     }
   },
   mounted(){
+    new VConsole()
     this.duix = new DUIX(
      {
         container: '.dt',
