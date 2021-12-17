@@ -29,13 +29,13 @@ export default {
       this.duix = new DUIX({
         container: '.dt',
         token: '',
-        robotMode: 'drive',
-        robotCode: '245982983437047536',
+        robotMode: null,
+        robotCode: '243794068751126528',
       })
 
       this.duix.on('detectedSpeech', (text) => {
         console.log(text)
-        this.speak(text)
+        this.duix.speak(text)
       })
     },
     say() {
