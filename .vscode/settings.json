@@ -1,0 +1,15 @@
+{
+    "editor.formatOnSave": true, // 保存时格式化
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true // 保存时执行eslint修复
+    },
+    "vetur.format.defaultFormatter.js": "prettier-eslint", // 使用eslint修复vue文件的script部分
+    "eslint.alwaysShowStatus": true, // 右下角展示ESLint状态，方便查看，可以没有。
+    "eslint.validate": [ // 让eslint对javascript和vue执行校验
+        "javascript",
+        "vue"
+    ],
+    "vetur.format.defaultFormatter.html": "none", // 关闭vetur对vue中template的格式化，不关会导致prettier格式化生效，进而导致冲突
+    "javascript.format.enable": false, // 禁用默认javascript格式化程序，以使eslint有效，不关会冲突
+    "vetur.format.options.useTabs": false, // 禁用vetur 的tab缩进
+}
