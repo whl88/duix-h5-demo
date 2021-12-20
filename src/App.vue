@@ -38,6 +38,7 @@ export default {
         this.duix.speak(text.asrText)
       })
       this.duix.on('asr', (text) => {
+        console.log('收到了asr', text)
         this.duix.speak(text)
       })
     },

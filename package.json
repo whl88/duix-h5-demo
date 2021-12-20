@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "duix-guiji": "^1.0.24",
+    "duix-guiji": "^1.0.26",
     "vconsole": "^3.9.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
