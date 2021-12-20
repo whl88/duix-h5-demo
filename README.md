@@ -71,6 +71,10 @@ const duix = new DUIX(
 
 停止当前webrtc直播
 
+#### setVideoMuted（）
+设置当前视频是否静音 (注:该方法需要用户一次界面操作行为后执行)
+https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
+
 #### on(eventname,callback)
 
 监听事件。
@@ -92,9 +96,19 @@ const duix = new DUIX(
 | bye           | im结束通话发送事件。                                             |
 | record-open          | 录音打开事件。                                             |
 | record-progress          | 录音进度事件(返回当前录音音量，采样频率等)。                                                   |
-| client-ready          | 和webrtc建立连接成功后回调事件。                                                   |
+| client-ready          | 和webrtc建立连接成功后回调事件。     
+| progress          | 当前rtc进度事件。                                             |
 
 ### 版本记录：
+1.0.25
+1.sdk内部去除语音识别后自动说话处理
+1.0.24
+1.新增私有化配置支持
+1.0.23
+1.一键构建打包脚本优化
+1.0.22
+1.新增xmpp新增disconnect外抛时间
+2.rtc audio参数新增几个配置项
 
 0.0.45 (暂未发布到npm)
 
