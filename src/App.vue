@@ -34,7 +34,10 @@ export default {
       })
 
       this.duix.on('detectedSpeech', (text) => {
-        console.log(text)
+        // console.log(text.asrText)
+        this.duix.speak(text.asrText)
+      })
+      this.duix.on('asr', (text) => {
         this.duix.speak(text)
       })
     },
