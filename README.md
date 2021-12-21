@@ -61,7 +61,7 @@ const duix = new DUIX(
 
 开始录音
 
-#### stopRecord(url: string 录音上传语音识别的地址全名)
+#### stopRecord()
 
 结束录音
 
@@ -100,6 +100,8 @@ https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
 | progress          | 当前rtc进度事件。                                             |
 
 ### 版本记录：
+1.0.26
+1.sdk内部去除录音成功识别后自动说话处理
 1.0.25
 1.sdk内部去除语音识别后自动说话处理
 1.0.24

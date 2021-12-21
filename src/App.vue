@@ -22,6 +22,7 @@ export default {
       recText: '按下录音',
       liveText: '开始麦克风实时驱动',
       emuted: true,
+      openMic: false,
     }
   },
   created() {},
@@ -33,6 +34,7 @@ export default {
         robotMode: null,
         groupId: 'pingan',
         robotCode: '243794068751126528',
+        openMic: true,
       })
 
       this.duix.on('detectedSpeech', (text) => {
@@ -46,7 +48,7 @@ export default {
         console.log('收到了asr', text)
         this.duix.speak(text)
       })
-      this.tooglemute()
+      this.duix.setVideoMuted(false)
     },
     say1() {
       this.duix.speak('刘伯承，辛亥革命时期从军，1926年加入中国共产党。相继参加了北伐战争、八一南昌起义、土地革命战争、长征、抗日战争、解放战争等。建国后，历任中共中央西南局第二书记，西南军政委员会主席，中国人民解放军军事学院院长兼政委，中央人民政府人民革命军事委员会副主席。1955年被授予元帅军衔。1986年10月7日，刘伯承在北京逝世，终年94岁。。')
