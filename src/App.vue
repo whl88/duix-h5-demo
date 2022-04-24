@@ -2,7 +2,6 @@
   <div id="app">
     <button @click="say()">文字驱动数字人</button>
     <button @click="tooglemute()">静音/取消</button>
-    <button @click="say1()">第二局</button>
     <button @click="reload()">重新加载</button>
     <button @mousedown="startRec" @mouseup="finishRec">{{ recText }}</button>
     <button @click="toogleLive">{{ liveText }}</button>
@@ -18,7 +17,6 @@ export default {
   name: 'Home',
   data: function () {
     return {
-      isRecInited: false,
       recText: '按下录音',
       liveText: '开始麦克风实时驱动',
       emuted: true,
@@ -29,30 +27,24 @@ export default {
   methods: {
     initDh() {
       this.duix = new DUIX({
-        container: '.dt',
-        token: '',
-        robotMode: null,
-        robotCode: '243794068751126528',
-        openMic: true,
+        containerLable: '.dt',
+        sign: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjE1MDE5MTQ5NzEyNTEwMTk3NzYiLCJleHAiOjE2NTA4NjYwMDUsImlhdCI6MTY1MDc3OTYwNX0.4tzGELEBKLFaiMuqGVj-Ie-JOxx4Nq86lUfbaInMNHw',
       })
 
-      this.duix.on('detectedSpeech', (text) => {
-        console.log(text.asrText)
-        this.duix.speak(text.asrText)
+      this.duix.on('intialSucccess', () => {
+        console.log('on intialSucccess')
+        this.duix.start({
+          robotMode: 'null'
+        })
       })
-      this.duix.on('progress', (state) => {
-        console.log('state', state)
+      this.duix.on('busy', function () {
+        alert('当前服务正忙')
       })
-      this.duix.on('asr', (text) => {
-        console.log('收到了asr', text)
-        this.duix.speak(text)
+      this.duix.on('bye', function () {
+        alert('结束服务')
       })
+
       this.duix.setVideoMuted(false)
-    },
-    say1() {
-      this.duix.speak(
-        '刘伯承，辛亥革命时期从军，1926年加入中国共产党。相继参加了北伐战争、八一南昌起义、土地革命战争、长征、抗日战争、解放战争等。建国后，历任中共中央西南局第二书记，西南军政委员会主席，中国人民解放军军事学院院长兼政委，中央人民政府人民革命军事委员会副主席。1955年被授予元帅军衔。1986年10月7日，刘伯承在北京逝世，终年94岁。。'
-      )
     },
     say() {
       this.duix.speak(
@@ -66,25 +58,29 @@ export default {
       this.duix.stop()
       this.initDh()
     },
+    
     async startRec() {
       this.recText = '松开完成录音'
-      if (!this.isRecInited) {
-        await this.duix.initRec()
-      }
       this.duix.startRecord()
     },
     finishRec() {
       this.recText = '按下录音'
-      this.duix.stopRecord()
+      this.duix.stopRecord({success:function(data){
+        console.log('识别结果', data)
+      }})
     },
+
     toogleLive() {
       if (this.living) {
         this.living = false
-        this.duix.closeLive()
+        this.duix.closeAsr()
         this.liveText = '开始麦克风实时驱动'
       } else {
         this.living = true
-        this.duix.startLive()
+        this.duix.openAsr({result: (data) => {
+          console.log('实时识别', data)
+          this.duix.speak(data)
+        }})
         this.liveText = '关闭麦克风实时驱动'
       }
     },
