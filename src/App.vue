@@ -28,20 +28,22 @@ export default {
     initDh() {
       this.duix = new DUIX({
         containerLable: '.dt',
-        sign: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjE1MDE5MTQ5NzEyNTEwMTk3NzYiLCJleHAiOjE2NTA4NjYwMDUsImlhdCI6MTY1MDc3OTYwNX0.4tzGELEBKLFaiMuqGVj-Ie-JOxx4Nq86lUfbaInMNHw',
+        sign: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhcHBJZCI6IjE1MzY2MzkzMTc0NDU4NDA4OTYiLCJleHAiOjE2NTY3NDM2NjEsImlhdCI6MTY1NjY1NzI2MX0._rT11JEwSjkBWn6iUfGSttoA6cTRCS5FABtxPzrNoHk',
       })
 
       this.duix.on('intialSucccess', () => {
         console.log('on intialSucccess')
         this.duix.start({
-          robotMode: 'null'
+          robotMode: 'null',
+          transparent: true,
+          muted: true,
         })
       })
       this.duix.on('busy', function () {
-        alert('当前服务正忙')
+        console.log('on busy')
       })
       this.duix.on('bye', function () {
-        alert('结束服务')
+        console.log('on bye')
       })
 
       this.duix.setVideoMuted(false)
@@ -95,6 +97,7 @@ export default {
 
 <style>
 .dt {
+  background: rgb(72, 72, 126);
   width: 337px;
   height: 600px;
 }
